@@ -3,7 +3,7 @@
 
 
 */
-
+#include <stdio.h>
 #include <iostream>
 using namespace std;
 
@@ -17,7 +17,7 @@ using namespace std;
 
 // prototype functions
 // Get user info function
-void getUser(
+void getInfo(
     char *vehicle, 
     int *hourIn, 
     int *minIn, 
@@ -39,7 +39,7 @@ void getTime(
 
 void getRate(
     char vehicle,
-    int *unit,
+    int *units,
     float *fristRate,
     float *secondRate
     );
@@ -54,7 +54,6 @@ void getCharge(
 
 void printInfo(
     char vehicle,
-    int units,
     int hourIn,
     int minIn,
     int hourOut,
@@ -162,19 +161,56 @@ void getTime(int hourIn, int hourOut, int minIn, int minOut, int *hourParkTime, 
     return;
 }// end of the getTime function.
 
-void getRate(char vehicle, int *units, float *fristRate, float *secondRate) {
-    
+void getRate(char vehicle, int *units, float *firstRate, float *secondRate) {
+
+    switch(vehicle){
+        case 'c':
+        case 'C': *units = 3;
+        *firstRate = fristCarRate;
+        *secondRate = secondCarRate;
+        break;
+
+        case 't':
+        case 'T': *units = 2;
+        *firstRate = firstTruckRate;
+        *secondRate = secondTruckRate;
+        break;
+
+        case 'b':
+        case 'B': *units = 1;
+        *firstRate = firstBusRate;
+        *secondRate = secondBusRate;
+        break;
+        default: printf("\n You did not enter a valid letter!");
+        printf("\nGood day!!!");
+    }// end of switch
     return;
 }// end of the getRate function.
 
 // get charge function
 void getCharge(int roundedTotal, int units, float firstRate, float secondRate, float *totalCharge) {
 
+    if (roundedTotal <= units){
+        *totalCharge = roundedTotal * firstRate;
+    } else {
+        *totalCharge = (units * firstRate) + ((roundedTotal - units) * secondRate); 
+    }
     return;
 }// end of the getCharge function.
 
 // the pritn function
 void printInfo(char vehicle, int hourIn, int minIn, int hourOut, int minOut, int hourParkTime, int minParkTime, int roundedTotal, float totalCharge) {
+    cout << endl << endl;
 
+
+    cout << "Your vehicle is a: " << vehicle << endl;
+    cout << "Hours in: " << hourIn << endl;
+    cout << "Minutes in: " << minIn << endl;
+    cout << "Hours out: " << hourOut << endl;
+    cout << "Minutes out: " << minOut << endl;
+    cout << "The amount of hours you parked: " << hourParkTime << endl;
+    cout << "The amount of minutes you parked: " << minParkTime << endl;
+    cout << "The rounded time you vehicle was here for: " << roundedTotal << endl;
+    cout << "The amount due!!! " << totalCharge << endl;
     return;
 }// end of the print function.
