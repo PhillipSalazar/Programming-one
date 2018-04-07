@@ -12,11 +12,11 @@ class Functions {
        information with so validation.
     */
     void getUser(    
-    char vehicle, 
-    int hourIn, 
-    int minIn, 
-    int hourOut, 
-    int minOut )
+    char *vehicle, 
+    int *hourIn, 
+    int *minIn, 
+    int *hourOut, 
+    int *minOut )
     {
         // asking for type of vehicle
         /* only answer accepted is 

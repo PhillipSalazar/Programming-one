@@ -141,7 +141,24 @@ void getInfo(char *vehicle, int *hourIn, int *minIn, int *hourOut, int *minOut) 
 
 // get time function.
 void getTime(int hourIn, int hourOut, int minIn, int minOut, int *hourParkTime, int *minParkTime, int *roundedTotal, int *rounded) {
+        
+    if (minOut < minIn){
+        minOut = minOut + 60;
+        hourOut = hourOut - 1;
+        *hourParkTime = hourOut - hourIn;
+        *minParkTime = minOut - minIn;
+    } else {
+        *hourParkTime = hourOut - hourIn;
+        *minParkTime = minOut - minIn;
+    }
 
+    if (*minParkTime >= 1){
+        *rounded = *hourParkTime + 1;
+        *roundedTotal = *rounded;
+    }else {
+        *rounded = *hourParkTime;
+        *roundedTotal = *rounded;
+    }
     return;
 }// end of the getTime function.
 
