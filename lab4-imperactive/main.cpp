@@ -111,14 +111,23 @@ void getInfo(char *vehicle, int *hourIn, int *minIn, int *hourOut, int *minOut) 
             't' or 'T' for truck,
             'b' or 'B' for Bus.
         */
+        //do {
         cout << "What is your vehicle type? ";
         cin >> *vehicle;
-        
+    /*    } while ((*vehicle == 'c') ||  
+                 (*vehicle == !'C') ||
+                 (*vehicle == !'t') ||
+                 (*vehicle == !'T') ||
+                 (*vehicle == !'b') ||
+                 (*vehicle == !'B')  
+                 );
+                 */
         // asking for hours in.
-        // answer must be only a real number.
+        // answer must be only a real number
+        
         cout << "Hours in: ";
         cin >> *hourIn;
-
+        
         // asking for minutes in.
         // answer must be only a real number.      
         cout << "Minutes in: ";
