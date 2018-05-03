@@ -47,14 +47,16 @@ int main() {
     int exam3_avarage;
     int final_avarage;
     int labs_avarage;
+    int quiz_avarage;
+    
     
     string grade_string;
     int grade;
     int i = 0;
     int number_of_lines = 0;
     // streaming files and 
+     ofstream outfile;
     ifstream infile;
-    ofstream outfile;
 
   
 	infile.open ("dataset.txt");
@@ -126,7 +128,10 @@ int main() {
         exam1_avarage += grades[i].exam1;
         exam2_avarage += grades[i].exam2;
         exam3_avarage += grades[i].exam3;
-        final_avarage += grades[i].finals;               
+        final_avarage += grades[i].finals; 
+
+        labs_avarage += (grades[i].lab1 + grades[i].lab2 + grades[i].lab3 + grades[i].lab4 + grades[i].lab5 + grades[i].lab6) / 6;     
+        quiz_avarage += (grades[i].quiz1 + grades[i].quiz2 + grades[i].quiz3) / 3;         
     }
     // Console out test to see if it works.
     //cout << grades[25].id << "\t" << grades[25].exam1 << endl;  
@@ -141,18 +146,18 @@ int main() {
   outfile.close();
 
 // useless search agolrithm 
-    int a;
-    int b;
+    int hieghestGrade;
+    int lowestGrade;
     for (int i = 0; i < 28; i++){
         if ( finalgrades[i] >= 80 ){
-            a = i;
+            hieghestGrade = i;
             break;
         }
     }
 
     for (int i = 0; i < 28; i++){
         if (finalgrades[i] < 65 ){
-            b = i;
+            lowestGrade = i;
             break;
         }
     }
@@ -161,12 +166,16 @@ int main() {
     
     //prints out hieghest score and lowest score. 
     //had to hard code the highest and lowest grade.
-    cout << "highest score " << "\tID: " << grades[a].id << "\tScore: " << grades[a].total_grade << "\tLetter grade: " << grades[a].letter_grade << endl;
-    cout << "Lowest score " << "\tID: " << grades[b].id << "\tScore: " << grades[b].total_grade << "\tLetter grade: " << grades[b].letter_grade << endl;
-    cout << "Exam 1 avarage: " << exam1_avarage/28 << endl;
+    cout << "highest score " << "\tID: " << grades[hieghestGrade].id << "\tScore: " << grades[hieghestGrade].total_grade << "\tLetter grade: " << grades[hieghestGrade].letter_grade << endl;
+    cout << "Lowest score " << "\tID: " << grades[lowestGrade].id << "\tScore: " << grades[lowestGrade].total_grade << "\tLetter grade: " << grades[lowestGrade].letter_grade << endl;
+    cout << "\nExam 1 avarage: " << exam1_avarage/28 << endl;
     cout << "Exam 2 avarage: " << exam2_avarage/28 << endl;
     cout << "Exam 3 avarage: " << exam3_avarage/28 << endl;
     cout << "Final avarage: " << final_avarage/28 << endl;
+    cout << "Labs avarage: " << labs_avarage/28 << endl;
+    cout << "Quizes avarage: " << quiz_avarage/28 << endl;
+    cout << endl;
+
     return 0;
 } // end of main function
 
