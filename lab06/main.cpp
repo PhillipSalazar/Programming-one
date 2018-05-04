@@ -5,7 +5,6 @@
 
 using namespace std;
 
-void openFile(string filename);
 char generateLetterGrade(int num);
 
 
